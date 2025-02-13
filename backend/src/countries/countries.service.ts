@@ -3,13 +3,11 @@ import axios from 'axios';
 
 @Injectable()
 export class CountriesService {
-  private readonly NAGER_URL = 'https://date.nager.at/api/v3';
-  private readonly COUNTRIES_SNOW_URL =
-    'https://countriesnow.space/api/v0.1/countries';
-
   async getAvailableCountries() {
     try {
-      const response = await axios.get(`${this.NAGER_URL}/AvailableCountries`);
+      const response = await axios.get(
+        `${process.env.NAGER_URL}/AvailableCountries`,
+      );
       return response.data;
     } catch (error) {
       throw new HttpException(
@@ -23,9 +21,9 @@ export class CountriesService {
   async getCountryInfo(countryCode: string) {
     try {
       const [countryData, populationData, flagData] = await Promise.all([
-        axios.get(`${this.NAGER_URL}/CountryInfo/${countryCode}`),
-        axios.get(`${this.COUNTRIES_SNOW_URL}/population`),
-        axios.get(`${this.COUNTRIES_SNOW_URL}/flag/images`),
+        axios.get(`${process.env.NAGER_URL}/CountryInfo/${countryCode}`),
+        axios.get(`${process.env.COUNTRIES_SNOW_URL}/population`),
+        axios.get(`${process.env.COUNTRIES_SNOW_URL}/flag/images`),
       ]);
 
       return {
