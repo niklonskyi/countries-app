@@ -1,0 +1,33 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+@layer components {
+  .container {
+    @apply max-w-4xl mx-auto px-4 py-8;
+  }
+
+  .card {
+    @apply bg-white shadow-md rounded-lg p-6;
+  }
+
+  .button {
+    @apply bg-primary text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition;
+  }
+}
